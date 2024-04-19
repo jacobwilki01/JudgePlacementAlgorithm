@@ -50,7 +50,7 @@ namespace JudgePlacement.JSON
 
         public static void UpdateTournament(Tournament tournament, string jsonTournament)
         {
-
+            // TO-DO Update values from "Create" using new download. It might be easier to just store new tournaments each time, I haven't decided.
         }
 
         private static void CreateBasics(Tournament tournament, JSONTournament jsonTournament)
