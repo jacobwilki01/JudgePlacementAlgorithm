@@ -49,11 +49,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
+      "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
       "projectName": "JudgePlacement.JSON",
-      "projectPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
+      "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
       "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\obj\\",
+      "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -74,11 +74,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
-              "projectPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
+            "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+              "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
             },
-            "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
-              "projectPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
+            "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
+              "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
             }
           }
         }

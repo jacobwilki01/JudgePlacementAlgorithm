@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {}
+    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
+        "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
         "projectName": "JudgePlacement.Data",
-        "projectPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
+        "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
         "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Data\\obj\\",
+        "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

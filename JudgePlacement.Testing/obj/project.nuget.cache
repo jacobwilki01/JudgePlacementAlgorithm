@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ctyr+xFzKtnvBINV0LSkOiSrzp0xnOXwDaPQL3tSF0qrMJhW6/F8FXrOLwTqoykSNhQ3p/0Tco7NSbMJ3BfBTw==",
+  "dgSpecHash": "lt0XzpxAKvCOmv6omIVpIhElMaZkwJkf9SBEz7nnawtA9KY1/6du/N8je0ckwerGsrBrs4jvc9zmqxfmsmR1jw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
+  "projectFilePath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
