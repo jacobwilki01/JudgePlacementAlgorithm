@@ -8,6 +8,8 @@ namespace JudgePlacement.JSON
 {
     public class TabroomHTTPClient
     {
+        public bool HasLoggedIn { get; set; } = false;
+
         public HttpClient Client = new()
         {
             BaseAddress = new Uri("https://www.tabroom.com")
@@ -31,20 +33,18 @@ namespace JudgePlacement.JSON
             return await Client.GetAsync($"/api/download_data?tourn_id={tournId}");
         }
 
-        public async Task<HttpResponseMessage?> TournamentDataToFile(string filePath, string tournId)
+        public string TournamentDataToString(string tournId)
         {
             Task<HttpResponseMessage?> response = GetTournamentData(tournId);
 
             if (response.Result == null)
-                return null;
+                return string.Empty;
 
-            Stream content = await response.Result.Content.ReadAsStreamAsync();
+            Stream content = response.Result.Content.ReadAsStream();
 
-            FileStream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 256000000, true);
+            StreamReader reader = new StreamReader(content);
 
-            await content.CopyToAsync(stream);
-
-            return response.Result;
+            return reader.ReadToEnd();
         }
     }
 }

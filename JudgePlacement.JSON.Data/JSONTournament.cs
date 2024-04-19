@@ -20,6 +20,8 @@ namespace JudgePlacement.JSON.Data
         public List<JSONSchool> schools { get; set; } = new();
 
         public List<JSONCategory> categories { get; set; } = new();
+
+        public List<JSONTimeslot> timeslots { get; set; } = new();
     }
 
     /// <summary>
@@ -43,7 +45,11 @@ namespace JudgePlacement.JSON.Data
 
         public string? id { get; set; }
 
+        public string? @event { get; set; }
+
         public int? active { get; set; }
+
+        public int? waitlist { get; set; }
     }
 
     /// <summary>
@@ -52,6 +58,8 @@ namespace JudgePlacement.JSON.Data
     public class JSONCategory
     {
         public string? name { get; set; }
+
+        public string? id { get; set; }
 
         public List<JSONEvent> events { get; set; } = new();
 
@@ -81,7 +89,7 @@ namespace JudgePlacement.JSON.Data
     {
         public int? name { get; set; }
 
-        public int? timeslot {  get; set; }
+        public int? timeslot { get; set; }
 
         public string? type { get; set; }
 
@@ -93,7 +101,7 @@ namespace JudgePlacement.JSON.Data
     /// </summary>
     public class JSONSection
     {
-        public int? room {  get; set; }
+        public string? letter {  get; set; }
 
         public List<JSONBallot> ballots { get; set; } = new();
     }
@@ -104,6 +112,22 @@ namespace JudgePlacement.JSON.Data
     public class JSONBallot
     {
         public int? entry { get; set; }
+
+        public int? side { get; set; }
+
+        public long? judge { get; set; }
+
+        public List<JSONScore> scores {  get; set; } = new();
+    }
+
+    /// <summary>
+    /// Class for a score from JSON data.
+    /// </summary>
+    public class JSONScore
+    {
+        public string? tag { get; set; }
+
+        public float? value { get; set; }
     }
 
     /// <summary>

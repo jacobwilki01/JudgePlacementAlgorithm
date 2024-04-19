@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JudgePlacement.JSON.Data\JudgePlacement.JSON.Data.csproj" />
+    <ProjectReference Include="..\JudgePlacement.JSON\JudgePlacement.JSON.csproj" />
+  </ItemGroup>
+
 </Project>
