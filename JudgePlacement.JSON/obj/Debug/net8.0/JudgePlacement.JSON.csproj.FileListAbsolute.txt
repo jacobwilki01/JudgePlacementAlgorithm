@@ -1,0 +1,11 @@
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\bin\Debug\net8.0\JudgePlacement.JSON.deps.json
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\bin\Debug\net8.0\JudgePlacement.JSON.dll
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\bin\Debug\net8.0\JudgePlacement.JSON.pdb
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.AssemblyInfoInputs.cache
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.AssemblyInfo.cs
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.csproj.CoreCompileInputs.cache
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.dll
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\refint\JudgePlacement.JSON.dll
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\JudgePlacement.JSON.pdb
+D:\Projects\JudgePlacementAlgorithm\JudgePlacement.JSON\obj\Debug\net8.0\ref\JudgePlacement.JSON.dll
