@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JudgePlacement.Data\JudgePlacement.Data.csproj" />
+    <ProjectReference Include="..\JudgePlacement.JSON.Data\JudgePlacement.JSON.Data.csproj" />
+    <ProjectReference Include="..\JudgePlacement.JSON\JudgePlacement.JSON.csproj" />
+  </ItemGroup>
+
+</Project>
