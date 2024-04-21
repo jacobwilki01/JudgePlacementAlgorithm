@@ -118,7 +118,8 @@ namespace JudgePlacement.JSON
                     {
                         Code = jsonEntry.code!,
                         TabroomId = int.Parse(jsonEntry.id!),
-                        EventId = int.Parse(jsonEntry.@event!)
+                        EventId = int.Parse(jsonEntry.@event!),
+                        School = school
                     };
 
                     school.Entries.Add(entry);
@@ -162,10 +163,9 @@ namespace JudgePlacement.JSON
                         foreach (JSONRating jsonRating in jsonJudge.ratings)
                         {
                             int entryId = int.Parse(jsonRating.entry!);
-                            Tuple<int, float> OrdinalPercentilePair = new(jsonRating.ordinal ?? 0, float.Parse(jsonRating.percentile!));
 
                             if (tournament.EntryMap.TryGetValue(entryId, out Entry? entry) && entry != null)
-                                entry.PreferenceSheet.Add(judge, OrdinalPercentilePair);
+                                entry.PreferenceSheet.Add(judge, float.Parse(jsonRating.percentile!));
                         }
 
                         category.Judges.Add(judge);
@@ -204,7 +204,8 @@ namespace JudgePlacement.JSON
 
                 Round debateRound = new Round()
                 {
-                    Name = "Round " + jsonRound.name!.ToString()
+                    Name = "Round " + jsonRound.name!.ToString(),
+                    RoundNum = (int)jsonRound.name
                 };
 
                 switch(jsonRound.type!)
@@ -227,6 +228,12 @@ namespace JudgePlacement.JSON
 
                 if (tournament.TimeslotMap.TryGetValue(jsonRound.timeslot ?? 0, out Timeslot? timeslot) && timeslot != null)
                     debateRound.Timeslot = timeslot;
+
+                foreach (JSONRoundSetting jsonRoundSetting in jsonRound.settings)
+                {
+                    if (jsonRoundSetting.tag!.Equals("num_judges"))
+                        debateRound.PanelSize = int.Parse(jsonRoundSetting.value!);
+                }
 
                 foreach (JSONSection jsonSection in jsonRound.sections)
                 {
@@ -257,11 +264,16 @@ namespace JudgePlacement.JSON
                         }
 
                         if (tournament.JudgeMap.TryGetValue(jsonBallot.judge ?? 0, out Judge? judge) && judge != null && !debate.Judges.Contains(judge))
+                        {
                             debate.Judges.Add(judge);
+                            debate.Affirmative!.PreviousJudges.Add(judge);
+                            debate.Negative!.PreviousJudges.Add(judge);
+                            judge.RoundsJudged++;
+                        }
                     }
 
                     if (debate.Affirmative != null && debate.Negative != null)
-                        debate.Bracket = Math.Max(debate.Affirmative!.Wins, debate.Negative!.Wins);
+                        debate.Bracket = Math.Min(debate.Affirmative!.Wins, debate.Negative!.Wins);
 
                     debateRound.Debates.Add(debate);
                 }

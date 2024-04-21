@@ -16,7 +16,13 @@ namespace JudgePlacement.Data
 
         public int Wins { get; set; } = 0;
 
-        public Dictionary<Judge, Tuple<int, float>> PreferenceSheet { get; set; } = new();
+        public bool IsActive { get; set; } = true;
+
+        public School? School { get; set; }
+
+        public Dictionary<Judge, float> PreferenceSheet { get; set; } = new();
+
+        public List<Judge> PreviousJudges { get; set; } = new();
 
         public Guid Guid = Guid.NewGuid();
     }

@@ -12,6 +12,10 @@ namespace JudgePlacement.Data
 
         public RoundTypeEnum Type { get; set; } = RoundTypeEnum.None;
 
+        public int PanelSize { get; set; } = 1;
+
+        public int RoundNum { get; set; } = 0;
+
         public Guid Guid = Guid.NewGuid();
 
         public Timeslot? Timeslot { get; set; }

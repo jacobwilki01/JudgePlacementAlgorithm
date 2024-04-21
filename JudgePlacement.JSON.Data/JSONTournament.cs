@@ -93,7 +93,19 @@ namespace JudgePlacement.JSON.Data
 
         public string? type { get; set; }
 
+        public List<JSONRoundSetting> settings { get; set; } = new();
+
         public List<JSONSection> sections { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Class for a round setting from JSON data.
+    /// </summary>
+    public class JSONRoundSetting
+    {
+        public string? tag { get; set; }
+
+        public string? value { get; set; }
     }
 
     /// <summary>

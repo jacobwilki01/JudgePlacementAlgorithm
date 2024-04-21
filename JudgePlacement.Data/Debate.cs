@@ -14,6 +14,12 @@ namespace JudgePlacement.Data
 
         public List<Judge> Judges { get; set; } = new();
 
+        public SortedDictionary<float, Judge> JudgeMutualities { get; set; } = new();
+
+        public SortedDictionary<float, List<Judge>> PanelMutualities { get; set; } = new();
+
+        public bool IsBye { get; set; } = false;
+
         public int Bracket { get; set; } = 0;
 
         public int Number { get; set; } = 0;
