@@ -12,34 +12,43 @@ namespace JudgePlacement.Placement
         #region Preference Weights and Maximums
         public static int BalancePreviousWeight { get; set; } = 5;
 
-        public static int PreferenceWeight { get; set; } = 20;
+        public static int PreferenceWeight { get; set; } = 18;
 
-        public static int MutualityWeight { get; set; } = 40;
+        public static int MutualityWeight { get; set; } = 25;
 
-        public static int PanelWeight { get; set; } = 20;
+        public static int PanelWeight { get; set; } = 18;
 
         public static int TotalWeight { get; set; } = 0;
 
         public static int MaxMutualityDifferenceIn { get; set; } = 20;
 
+        public static int MaxMutualityDifferenceBreakRound { get; set; } = 15;
+
         public static int MaxMutualityDifferenceOut { get; set; } = 35;
 
         public static int MaxPreferenceIn { get; set; } = 50;
 
-        public static int MaxPreferenceOut { get; set; } = 80;
+        public static int MaxPreferenceBreakRound { get; set; } = 40;
+
+        public static int MaxPreferenceOut { get; set; } = 70;
 
         public static int MaxPanelDifference { get; set; } = 0;
         #endregion Preference Weights and Maximums
 
         public static int BreakingPoint { get; set; } = 2;
 
-        public static bool Backtrack { get; set; } = true;
-
         public static void PlaceJudges(Round round, JudgePool judgePool)
         {
             // Reset availability for each judge.
             foreach (Judge judge in judgePool.Judges)
                 judge.CurrentlyPlaced = false;
+
+            // temp code
+            Judge Chief = judgePool.Judges.Find(jdg => jdg.Name.Contains("Darren Elliott"))!;
+            Judge Wilkus = judgePool.Judges.Find(jdg => jdg.Name.Contains("Wilkus"))!;
+
+            judgePool.Judges.Remove(Chief);
+            judgePool.Judges.Remove(Wilkus);
 
             // Calculate the pref value for each judge/panel and round combination.
             CalculatePrefValues(round, judgePool);
@@ -51,16 +60,39 @@ namespace JudgePlacement.Placement
             FirstPassAssignment(brackets, round.Event!, round.PanelSize);
 
             // Backtracking
-            if (Backtrack)
-            {
-                for (int i = 0; i < 1_000_000; i++)
-                {
-                    if (i % 1000 == 0)
-                        Console.WriteLine(i.ToString());
+            int numTests = 0;
 
-                    if (BacktrackingSingleJudge(round))
+            while (numTests < 1_000)
+            {
+                while (numTests < 1_000)
+                {
+                    while (numTests < 1_000)
+                    {
+                        numTests++;
+
+                        if (numTests % 10_000 == 0)
+                            Console.WriteLine(numTests.ToString());
+
+                        if (BacktrackingTwoWay(round))
+                            break;
+                    }
+
+                    numTests++;
+
+                    if (numTests % 10_000 == 0)
+                        Console.WriteLine(numTests.ToString());
+
+                    if (BacktrackingThreeWay(round))
                         break;
                 }
+
+                numTests++;
+
+                if (numTests % 10_000 == 0)
+                    Console.WriteLine(numTests.ToString());
+
+                if (BacktrackingFixBreakRounds(round))
+                    break;
             }
 
             // Re-Integrate Excluded Judges
@@ -71,7 +103,10 @@ namespace JudgePlacement.Placement
             }
 
             for (int i = 0; i < 1000; i++)
-                ReIncludeJudges(round, judgePool);
+            {
+                if (ReIncludeJudges(round, judgePool))
+                    break;
+            }
 
             foreach (Judge judge in judgePool.Judges)
             {
@@ -239,7 +274,7 @@ namespace JudgePlacement.Placement
             List<List<Debate>> brackets = new();
 
             // If HighLow or HighHigh, organize automatically
-            if (round.Type != RoundTypeEnum.Preset || round.Type != RoundTypeEnum.Elim)
+            if (round.Type != RoundTypeEnum.Preset && round.Type != RoundTypeEnum.Elim)
             {
                 for (int i = 0; i < round.RoundNum; i++)
                     brackets.Add(new List<Debate>());
@@ -394,7 +429,7 @@ namespace JudgePlacement.Placement
         /// </summary>
         /// <param name="round">The round</param>
         /// <returns>True if no changes were made, False otherwise.</returns>
-        private static bool BacktrackingSingleJudge(Round round)
+        private static bool BacktrackingTwoWay(Round round)
         {
             int numChanges = 0;
             
@@ -409,8 +444,8 @@ namespace JudgePlacement.Placement
 
                     Judge judge2 = debate2.Judges[0];
 
-                    int maxPreference1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? MaxPreferenceIn : MaxPreferenceOut;
-                    int maxPreference2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? MaxPreferenceIn : MaxPreferenceOut;
+                    int maxPreference1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+                    int maxPreference2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
 
                     if (IsJudgeStruck(round.Event!, debate1, judge2) && IsJudgeStruck(round.Event!, debate2, judge1))
                         continue;
@@ -427,13 +462,13 @@ namespace JudgePlacement.Placement
                         float tempVariance1 = Math.Abs(debate1.GetVariance() - impact1On1 + impact2On1);
                         float tempVariance2 = Math.Abs(debate2.GetVariance() - impact2On2 + impact1On2);
 
-                        int maxMutuality1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? MaxMutualityDifferenceIn : MaxMutualityDifferenceOut;
-                        int maxMutuality2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? MaxMutualityDifferenceIn : MaxMutualityDifferenceOut;
+                        int maxMutuality1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+                        int maxMutuality2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
 
                         if (tempVariance1 <= maxMutuality1 && tempVariance2 <= maxMutuality2 && impact2On1 <= maxMutuality1 && impact1On2 <= maxMutuality2)
                         {
                             float currentEval = debate1.CurrentMutualPref + debate2.CurrentMutualPref + (debate1.GetVariance() * PanelWeight) + (debate2.GetVariance() * PanelWeight);
-                            float flipEval = CalculateJudgePrefValue(round, debate1, judge2) + CalculateJudgePrefValue(round, debate2, judge1) + (debate1.GetVariance() * PanelWeight) + (debate2.GetVariance() * PanelWeight);
+                            float flipEval = CalculateJudgePrefValue(round, debate1, judge2) + CalculateJudgePrefValue(round, debate2, judge1) + (tempVariance1 * PanelWeight) + (tempVariance2 * PanelWeight);
 
                             if (flipEval < currentEval)
                             {
@@ -456,7 +491,183 @@ namespace JudgePlacement.Placement
             return numChanges == 0;
         }
 
+        /// <summary>
+        /// Method to backtrack and repair debates in three-way permutations.
+        /// </summary>
+        /// <param name="round">The round at hand.</param>
+        /// <returns>True if no changes were made, false if not.</returns>
+        private static bool BacktrackingThreeWay(Round round)
+        {
+            int numChanges = 0;
 
+            foreach (Debate debate1 in round.Debates)
+            {
+                Judge judge1 = debate1.Judges[0];
+
+                foreach (Debate debate2 in round.Debates)
+                {
+                    if (debate2.Equals(debate1))
+                        continue;
+
+                    Judge judge2 = debate2.Judges[0];
+
+                    int maxPreference1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+                    int maxPreference2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+
+                    if (IsJudgeStruck(round.Event!, debate1, judge2) && IsJudgeStruck(round.Event!, debate2, judge1))
+                        continue;
+
+                    // Evaluate cross-bracket permutations
+                    if (debate1.Bracket == debate2.Bracket || debate2.GetPotentialPrefMaximum(judge1) <= maxPreference2)
+                    {
+                        foreach (Debate debate3 in round.Debates)
+                        {
+                            if (debate3.Equals(debate1) || debate3.Equals(debate2))
+                                continue;
+
+                            Judge judge3 = debate3.Judges[0];
+
+                            int maxPreference3 = (debate3.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate3.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+
+                            if ((debate1.Bracket == debate2.Bracket && debate2.Bracket == debate3.Bracket) || (debate1.GetPotentialPrefMaximum(judge3) <= maxPreference1 && debate3.GetPotentialPrefMaximum(judge2) <= maxPreference3))
+                            {
+                                // Gets the impact of a judge on a debate
+                                float impact1On1 = debate1.GetPotentialImpact(judge1);
+                                float impact1On2 = debate2.GetPotentialImpact(judge1);
+                                float impact2On3 = debate3.GetPotentialImpact(judge2);
+                                float impact2On2 = debate2.GetPotentialImpact(judge2);
+                                float impact3On1 = debate1.GetPotentialImpact(judge3);
+                                float impact3On3 = debate3.GetPotentialImpact(judge3);
+
+                                float tempVariance1 = Math.Abs(debate1.GetVariance() - impact1On1 + impact3On1);
+                                float tempVariance2 = Math.Abs(debate2.GetVariance() - impact2On2 + impact1On2);
+                                float tempVariance3 = Math.Abs(debate3.GetVariance() - impact3On3 + impact2On3);
+
+                                int maxMutuality1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+                                int maxMutuality2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+                                int maxMutuality3 = (debate3.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate3.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+
+                                if (tempVariance1 <= maxMutuality1 && tempVariance2 <= maxMutuality2 && tempVariance3 <= maxMutuality3 && impact3On1 <= maxMutuality1 && impact1On2 <= maxMutuality2 && impact2On3 <= maxMutuality3)
+                                {
+                                    float currentEval = debate1.CurrentMutualPref 
+                                        + debate2.CurrentMutualPref 
+                                        + debate3.CurrentMutualPref 
+                                        + (debate1.GetVariance() * PanelWeight) 
+                                        + (debate2.GetVariance() * PanelWeight) 
+                                        + (debate3.GetVariance() * PanelWeight);
+
+                                    float flipEval = CalculateJudgePrefValue(round, debate1, judge3) 
+                                        + CalculateJudgePrefValue(round, debate2, judge1) 
+                                        + CalculateJudgePrefValue(round, debate3, judge2) 
+                                        + (tempVariance1 * PanelWeight) 
+                                        + (tempVariance2 * PanelWeight)
+                                        + (tempVariance3 * PanelWeight);
+
+                                    if (flipEval < currentEval)
+                                    {
+                                        // Swap assignments
+                                        debate1.Judges.Add(judge3);
+                                        debate2.Judges.Add(judge1);
+                                        debate3.Judges.Add(judge2);
+                                        debate1.Judges.Remove(judge1);
+                                        debate2.Judges.Remove(judge2);
+                                        debate3.Judges.Remove(judge3);
+
+                                        // Swap internal reference
+                                        judge2 = judge1;
+                                        judge1 = judge3;
+
+                                        numChanges++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return numChanges == 0;
+        }
+
+        /// <summary>
+        /// Method to backtrack and fix break rounds so they meet the target rather than maximize total preference.
+        /// </summary>
+        /// <param name="round"></param>
+        /// <returns></returns>
+        private static bool BacktrackingFixBreakRounds(Round round)
+        {
+            int numChanges = 0;
+
+            foreach (Debate debate1 in round.Debates)
+            {
+                Judge judge1 = debate1.Judges[0];
+                Debate? bestDebate = null;
+
+                int maxPreference1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+
+                if (debate1.GetPrefMaximum() > maxPreference1 && debate1.Bracket >= round.RoundNum - BreakingPoint - 1)
+                {
+                    float flipEval = float.MaxValue;
+
+                    foreach (Debate debate2 in round.Debates)
+                    {
+                        if (debate1.Equals(debate2))
+                            continue;
+
+                        Judge judge2 = debate2.Judges[0];
+
+                        int maxPreference2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+
+                        if (debate1.Bracket > debate2.Bracket && debate1.GetPotentialPrefMaximum(judge2) <= maxPreference1 && debate2.GetPotentialPrefMaximum(judge1) <= maxPreference2)
+                        {
+                            // Gets the impact of a judge on a debate
+                            float impact1On1 = debate1.GetPotentialImpact(judge1);
+                            float impact1On2 = debate2.GetPotentialImpact(judge1);
+                            float impact2On1 = debate1.GetPotentialImpact(judge2);
+                            float impact2On2 = debate2.GetPotentialImpact(judge2);
+
+                            float tempVariance1 = Math.Abs(debate1.GetVariance() - impact1On1 + impact2On1);
+                            float tempVariance2 = Math.Abs(debate2.GetVariance() - impact2On2 + impact1On2);
+
+                            int maxMutuality1 = (debate1.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate1.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+                            int maxMutuality2 = (debate2.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate2.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+
+                            if (tempVariance1 <= maxMutuality1 && tempVariance2 <= maxMutuality2 && impact2On1 <= maxMutuality1 && impact1On2 <= maxMutuality2)
+                            {
+                                float eval = debate1.GetPotentialPrefMaximum(judge2);
+
+                                if (eval < flipEval)
+                                {
+                                    flipEval = eval;
+                                    bestDebate = debate2;
+                                }
+                            }
+                        }
+                    }
+
+                    if (flipEval < float.MaxValue)
+                    {
+                        Judge judge2 = bestDebate!.Judges[0];
+
+                        bestDebate!.Judges.Add(judge1);
+                        bestDebate!.Judges.Remove(judge2);
+                        debate1.Judges.Add(judge2);
+                        debate1.Judges.Remove(judge1);
+
+                        judge1 = judge2;
+                    }
+                }
+            }
+
+            return numChanges == 0;
+        }
+
+        /// <summary>
+        /// Re-includes judges that were "lost" during replacement.
+        /// </summary>
+        /// <param name="round">The round being paired.</param>
+        /// <param name="judgePool">The judge pool of available judges.</param>
+        /// <returns>True if no changes were made, false if there were.</returns>
         private static bool ReIncludeJudges(Round round, JudgePool judgePool)
         {
             int numChanges = 0;
@@ -506,7 +717,12 @@ namespace JudgePlacement.Placement
             return numChanges == 0;
         }
 
-
+        /// <summary>
+        /// Checks if a judge is paired in a given round.
+        /// </summary>
+        /// <param name="round">The round</param>
+        /// <param name="judge">The judge</param>
+        /// <returns>True if they are judging, false if not.</returns>
         private static bool IsJudgeJudging(Round round, Judge judge)
         {
             foreach (Debate debate in round.Debates)

@@ -68,7 +68,24 @@ namespace JudgePlacement.Data
 
             if (Judges.Count == 1)
             {
-                return Math.Max(Affirmative!.PreferenceSheet[Judges[0]], Negative!.PreferenceSheet[Judges[0]]);
+                if (Affirmative!.PreferenceSheet.ContainsKey(Judges[0]))
+                {
+                    if (Negative!.PreferenceSheet.ContainsKey(Judges[0]))
+                        return Math.Max(Affirmative!.PreferenceSheet[Judges[0]], Negative!.PreferenceSheet[Judges[0]]);
+
+                    return Affirmative!.PreferenceSheet[Judges[0]];
+                }
+                else if (Negative!.PreferenceSheet.ContainsKey(Judges[0]))
+                {
+                    if (Affirmative!.PreferenceSheet.ContainsKey(Judges[0]))
+                        return Math.Max(Affirmative!.PreferenceSheet[Judges[0]], Negative!.PreferenceSheet[Judges[0]]);
+
+                    return Negative!.PreferenceSheet[Judges[0]];
+                }
+                else
+                { 
+                    return 0f; 
+                }
             }
             else
             {
@@ -141,7 +158,7 @@ namespace JudgePlacement.Data
             string prevPref = "(" + Math.Round(affPrev, 2).ToString() + "-" + Math.Round(negPrev, 2).ToString() + ")";
 
             // Affirmative!.Code + "\tvs. " + Negative!.Code + "\t| " + 
-            return Bracket.ToString() + " | " + judgeNames + curPref + " | " + Previous!.Name + prevPref;
+            return Bracket.ToString() + " |" + judgeNames + curPref + " | " + Previous!.Name + prevPref;
         }
     }
 }
