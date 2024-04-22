@@ -168,6 +168,27 @@ namespace JudgePlacement.JSON
                                 entry.PreferenceSheet.Add(judge, float.Parse(jsonRating.percentile!));
                         }
 
+                        foreach (JSONStrike jsonStrike in jsonJudge.strikes)
+                        {
+                            switch (jsonStrike.tag)
+                            {
+                                case "event":
+                                    Event @event = tournament.EventMap[(int)jsonStrike.@event!];
+                                    judge.EventStrikes.Add(@event);
+                                    break;
+                                case "entry":
+                                    Entry entry = tournament.EntryMap[(int)jsonStrike.entry!];
+                                    judge.EntryStrikes.Add(entry);
+                                    break;
+                                case "school":
+                                    School school = tournament.SchoolMap[(int)jsonStrike.school!];
+                                    judge.SchoolStrikes.Add(school);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
                         category.Judges.Add(judge);
                         tournament.JudgeMap.Add(judge.TabroomId, judge);
                     }
@@ -197,7 +218,7 @@ namespace JudgePlacement.JSON
         {
             List<Tuple<Event, JSONRound>> roundsToProcess = GetJSONRounds(tournament, jsonTournament);
 
-            foreach (Tuple<Event, JSONRound> round in  roundsToProcess)
+            foreach (Tuple<Event, JSONRound> round in roundsToProcess)
             {
                 Event @event = round.Item1;
                 JSONRound jsonRound = round.Item2;
@@ -266,19 +287,25 @@ namespace JudgePlacement.JSON
                         if (tournament.JudgeMap.TryGetValue(jsonBallot.judge ?? 0, out Judge? judge) && judge != null && !debate.Judges.Contains(judge))
                         {
                             debate.Judges.Add(judge);
-                            debate.Affirmative!.PreviousJudges.Add(judge);
-                            debate.Negative!.PreviousJudges.Add(judge);
+
+                            if (debate.Affirmative != null)
+                                debate.Affirmative!.PreviousJudges.Add(judge);
+                            if (debate.Negative != null)
+                                debate.Negative!.PreviousJudges.Add(judge);
+
                             judge.RoundsJudged++;
                         }
                     }
 
                     if (debate.Affirmative != null && debate.Negative != null)
-                        debate.Bracket = Math.Min(debate.Affirmative!.Wins, debate.Negative!.Wins);
+                        debate.Bracket = Math.Max(debate.Affirmative!.Wins, debate.Negative!.Wins);
 
                     debateRound.Debates.Add(debate);
+                    debateRound.Event = @event;
                 }
 
                 @event.Rounds.Add(debateRound);
+                @event.Rounds = @event.Rounds.OrderBy(rd => rd.RoundNum).ToList();
             }
         }
 

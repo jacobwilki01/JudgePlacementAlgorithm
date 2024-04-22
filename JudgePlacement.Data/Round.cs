@@ -21,5 +21,25 @@ namespace JudgePlacement.Data
         public Timeslot? Timeslot { get; set; }
 
         public List<Debate> Debates { get; set; } = new();
+
+        public Event? Event { get; set; }
+
+        public void EraseJudges()
+        {
+            foreach (Debate debate in Debates)
+            {
+                foreach (Judge judge in debate.Judges)
+                {
+                    judge.CurrentlyPlaced = false;
+                    judge.RoundsJudged--;
+                    debate.Previous = debate.Judges[0]; // TO-DO remove
+                }
+
+                debate.Bracket--; // TO-DO remove
+
+                debate.CurrentMutualPref = 0f;
+                debate.Judges.Clear();
+            }
+        }
     }
 }

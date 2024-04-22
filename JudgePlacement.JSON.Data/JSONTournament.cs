@@ -170,6 +170,8 @@ namespace JudgePlacement.JSON.Data
         public int? obligation { get; set; }
 
         public List<JSONRating> ratings { get; set; } = new();
+
+        public List<JSONStrike> strikes { get; set; } = new();
     }
 
     /// <summary>
@@ -184,6 +186,20 @@ namespace JudgePlacement.JSON.Data
         public string? percentile {  get; set; }
 
         public string? entry { get; set; }
+    }
+
+    /// <summary>
+    /// Class for a strike from JSON data.
+    /// </summary>
+    public class JSONStrike
+    {
+        public int? school { get; set; }
+
+        public int? @event { get; set; }
+
+        public int? entry { get; set; }
+
+        public string? tag { get; set; }
     }
 
     /// <summary>

@@ -18,6 +18,14 @@ namespace JudgePlacement.Data
 
         public bool IsActive { get; set; } = true;
 
+        public bool CurrentlyPlaced { get; set; } = false;
+
+        public List<Event> EventStrikes { get; set; } = new();
+
+        public List<Entry> EntryStrikes { get; set; } = new();
+
+        public List<School> SchoolStrikes { get; set; } = new();
+
         public School? School { get; set; }
     }
 }

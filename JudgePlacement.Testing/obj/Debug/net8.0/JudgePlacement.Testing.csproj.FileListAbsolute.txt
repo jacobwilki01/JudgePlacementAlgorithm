@@ -21,3 +21,5 @@ D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\refint
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\JudgePlacement.Testing.pdb
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\JudgePlacement.Testing.genruntimeconfig.cache
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\ref\JudgePlacement.Testing.dll
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\bin\Debug\net8.0\JudgePlacement.Placement.dll
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\bin\Debug\net8.0\JudgePlacement.Placement.pdb
