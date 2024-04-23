@@ -1,1 +1,17 @@
 .vs
+JudgePlacement.Data/obj/Debug/net8.0/JudgePlacement.Data.AssemblyInfo.cs
+JudgePlacement.Data/obj/Debug/net8.0/JudgePlacement.Data.AssemblyInfoInputs.cache
+JudgePlacement.Data/obj/Debug/net8.0/JudgePlacement.Data.AssemblyInfo.cs
+JudgePlacement.Data/obj/Debug/net8.0/JudgePlacement.Data.AssemblyInfoInputs.cache
+JudgePlacement.JSON.Data/obj/Debug/net8.0/JudgePlacement.JSON.Data.AssemblyInfo.cs
+JudgePlacement.JSON.Data/obj/Debug/net8.0/JudgePlacement.JSON.Data.AssemblyInfoInputs.cache
+JudgePlacement.JSON/obj/Debug/net8.0/JudgePlacement.JSON.AssemblyInfo.cs
+JudgePlacement.JSON/obj/Debug/net8.0/JudgePlacement.JSON.AssemblyInfoInputs.cache
+JudgePlacement.JSON/obj/Debug/net8.0/JudgePlacement.JSON.csproj.AssemblyReference.cache
+*.cache
+JudgePlacement.Placement/obj/Debug/net8.0/JudgePlacement.Placement.AssemblyInfo.cs
+JudgePlacement.Placement/obj/Debug/net8.0/JudgePlacement.Placement.AssemblyInfoInputs.cache
+JudgePlacement.Placement/obj/Debug/net8.0/JudgePlacement.Placement.csproj.AssemblyReference.cache
+JudgePlacement.Testing/obj/Debug/net8.0/JudgePlacement.Testing.AssemblyInfo.cs
+JudgePlacement.Testing/obj/Debug/net8.0/JudgePlacement.Testing.AssemblyInfoInputs.cache
+JudgePlacement/obj/Debug/net8.0-windows/JudgePlacement.AssemblyInfo.cs
