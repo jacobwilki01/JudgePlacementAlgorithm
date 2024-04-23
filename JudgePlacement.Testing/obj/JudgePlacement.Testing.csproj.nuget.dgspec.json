@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj": {}
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
+        "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
         "projectName": "JudgePlacement.Data",
-        "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
+        "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj",
         "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\obj\\",
+        "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -68,14 +69,14 @@
         }
       }
     },
-    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
+        "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
         "projectName": "JudgePlacement.JSON.Data",
-        "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
+        "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
         "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\obj\\",
+        "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -90,6 +91,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -132,14 +134,14 @@
         }
       }
     },
-    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
+        "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
         "projectName": "JudgePlacement.JSON",
-        "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
+        "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj",
         "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\obj\\",
+        "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -154,17 +156,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
-                "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
               },
-              "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
-                "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
               }
             }
           }
@@ -203,14 +206,14 @@
         }
       }
     },
-    "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj": {
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
-        "projectName": "JudgePlacement.Testing",
-        "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
+        "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj",
+        "projectName": "JudgePlacement.Placement",
+        "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj",
         "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\obj\\",
+        "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -225,17 +228,90 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
-                "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
+        "projectName": "JudgePlacement.Testing",
+        "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\JudgePlacement.Testing.csproj",
+        "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Testing\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jwilk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
               },
-              "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
-                "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj"
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj"
+              },
+              "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj": {
+                "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj"
               }
             }
           }

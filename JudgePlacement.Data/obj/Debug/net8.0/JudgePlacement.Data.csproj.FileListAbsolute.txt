@@ -10,3 +10,15 @@ D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlac
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\refint\JudgePlacement.Data.dll
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.pdb
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\ref\JudgePlacement.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\bin\Debug\net8.0\JudgePlacement.Data.deps.json
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\bin\Debug\net8.0\JudgePlacement.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\bin\Debug\net8.0\JudgePlacement.Data.pdb
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.AssemblyInfoInputs.cache
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.AssemblyInfo.cs
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.csproj.CoreCompileInputs.cache
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.sourcelink.json
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\refint\JudgePlacement.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.pdb
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\ref\JudgePlacement.Data.dll

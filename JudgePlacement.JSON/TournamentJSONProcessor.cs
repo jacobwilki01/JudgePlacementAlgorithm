@@ -50,7 +50,7 @@ namespace JudgePlacement.JSON
 
         public static void UpdateTournament(Tournament tournament, string jsonTournament)
         {
-
+            // TO-DO Update values from "Create" using new download. It might be easier to just store new tournaments each time, I haven't decided.
         }
 
         private static void CreateBasics(Tournament tournament, JSONTournament jsonTournament)
@@ -118,7 +118,8 @@ namespace JudgePlacement.JSON
                     {
                         Code = jsonEntry.code!,
                         TabroomId = int.Parse(jsonEntry.id!),
-                        EventId = int.Parse(jsonEntry.@event!)
+                        EventId = int.Parse(jsonEntry.@event!),
+                        School = school
                     };
 
                     school.Entries.Add(entry);
@@ -159,13 +160,35 @@ namespace JudgePlacement.JSON
                             School = tournament.SchoolMap[int.Parse(jsonJudge.school ?? "0")]
                         };
 
+                        judge.SchoolStrikes.Add(judge.School);
+
                         foreach (JSONRating jsonRating in jsonJudge.ratings)
                         {
                             int entryId = int.Parse(jsonRating.entry!);
-                            Tuple<int, float> OrdinalPercentilePair = new(jsonRating.ordinal ?? 0, float.Parse(jsonRating.percentile!));
 
                             if (tournament.EntryMap.TryGetValue(entryId, out Entry? entry) && entry != null)
-                                entry.PreferenceSheet.Add(judge, OrdinalPercentilePair);
+                                entry.PreferenceSheet.Add(judge, float.Parse(jsonRating.percentile!));
+                        }
+
+                        foreach (JSONStrike jsonStrike in jsonJudge.strikes)
+                        {
+                            switch (jsonStrike.tag)
+                            {
+                                case "event":
+                                    Event @event = tournament.EventMap[(int)jsonStrike.@event!];
+                                    judge.EventStrikes.Add(@event);
+                                    break;
+                                case "entry":
+                                    Entry entry = tournament.EntryMap[(int)jsonStrike.entry!];
+                                    judge.EntryStrikes.Add(entry);
+                                    break;
+                                case "school":
+                                    School school = tournament.SchoolMap[(int)jsonStrike.school!];
+                                    judge.SchoolStrikes.Add(school);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
 
                         category.Judges.Add(judge);
@@ -197,14 +220,15 @@ namespace JudgePlacement.JSON
         {
             List<Tuple<Event, JSONRound>> roundsToProcess = GetJSONRounds(tournament, jsonTournament);
 
-            foreach (Tuple<Event, JSONRound> round in  roundsToProcess)
+            foreach (Tuple<Event, JSONRound> round in roundsToProcess)
             {
                 Event @event = round.Item1;
                 JSONRound jsonRound = round.Item2;
 
                 Round debateRound = new Round()
                 {
-                    Name = "Round " + jsonRound.name!.ToString()
+                    Name = "Round " + jsonRound.name!.ToString(),
+                    RoundNum = (int)jsonRound.name
                 };
 
                 switch(jsonRound.type!)
@@ -228,12 +252,20 @@ namespace JudgePlacement.JSON
                 if (tournament.TimeslotMap.TryGetValue(jsonRound.timeslot ?? 0, out Timeslot? timeslot) && timeslot != null)
                     debateRound.Timeslot = timeslot;
 
+                foreach (JSONRoundSetting jsonRoundSetting in jsonRound.settings)
+                {
+                    if (jsonRoundSetting.tag!.Equals("num_judges"))
+                        debateRound.PanelSize = int.Parse(jsonRoundSetting.value!);
+                }
+
                 foreach (JSONSection jsonSection in jsonRound.sections)
                 {
                     Debate debate = new Debate()
                     {
                         Number = int.Parse(jsonSection.letter!)
                     };
+
+                    int numBallots = 0;
 
                     foreach (JSONBallot jsonBallot in jsonSection.ballots)
                     {
@@ -246,27 +278,75 @@ namespace JudgePlacement.JSON
                             else
                                 debate.Negative = entry;
 
+                            if (!debate.EntryBallotMap.ContainsKey(entry))
+                                debate.EntryBallotMap.Add(entry, 0);
+
                             foreach (JSONScore jsonScore in jsonBallot.scores)
                             {
                                 if (!jsonScore.tag!.Equals("winloss"))
                                     continue;
 
+                                numBallots++;
+
                                 if (jsonScore.value! == 1)
+                                    debate.EntryBallotMap[entry] = 1;
+                            }
+
+                            // Means a bye/forfeit combination occured.
+                            if (jsonBallot.scores.Count == 0)
+                            {
+                                if (jsonBallot.bye != null)
+                                {
                                     entry.Wins++;
+                                    entry.WinLossMap.Add(debateRound.RoundNum, true);
+                                }
+                                else
+                                {
+                                    entry.WinLossMap.Add(debateRound.RoundNum, false);
+                                }
                             }
                         }
 
                         if (tournament.JudgeMap.TryGetValue(jsonBallot.judge ?? 0, out Judge? judge) && judge != null && !debate.Judges.Contains(judge))
+                        {
                             debate.Judges.Add(judge);
+
+                            if (debate.Affirmative != null)
+                                debate.Affirmative!.PreviousJudges.Add(judge);
+                            if (debate.Negative != null)
+                                debate.Negative!.PreviousJudges.Add(judge);
+
+                            judge.RoundsJudged++;
+                        }
                     }
 
+                    // De-duplicates the number of ballots.
+                    numBallots /= 2;
+
                     if (debate.Affirmative != null && debate.Negative != null)
-                        debate.Bracket = Math.Max(debate.Affirmative!.Wins, debate.Negative!.Wins);
+                    {
+                        debate.Bracket = Math.Max(debate.Affirmative.Wins, debate.Negative.Wins);
+
+                        if (numBallots > 0 && debate.EntryBallotMap[debate.Affirmative] / numBallots > 0.5)
+                        {
+                            debate.Affirmative.Wins++;
+                            debate.Affirmative.WinLossMap.Add(debateRound.RoundNum, true);
+                            debate.Negative.WinLossMap.Add(debateRound.RoundNum, false);
+                        }
+                        else if (numBallots > 0)
+                        {
+                            debate.Negative.Wins++;
+                            debate.Negative.WinLossMap.Add(debateRound.RoundNum, true);
+                            debate.Affirmative.WinLossMap.Add(debateRound.RoundNum, false);
+                        }
+                    }
 
                     debateRound.Debates.Add(debate);
+                    debateRound.Event = @event;
                 }
 
                 @event.Rounds.Add(debateRound);
+                @event.Rounds = @event.Rounds.OrderBy(rd => rd.RoundNum).ToList();
             }
         }
 

@@ -93,7 +93,19 @@ namespace JudgePlacement.JSON.Data
 
         public string? type { get; set; }
 
+        public List<JSONRoundSetting> settings { get; set; } = new();
+
         public List<JSONSection> sections { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Class for a round setting from JSON data.
+    /// </summary>
+    public class JSONRoundSetting
+    {
+        public string? tag { get; set; }
+
+        public string? value { get; set; }
     }
 
     /// <summary>
@@ -114,6 +126,10 @@ namespace JudgePlacement.JSON.Data
         public int? entry { get; set; }
 
         public int? side { get; set; }
+
+        public int? bye { get; set; }
+
+        public int? forfeit { get; set; }
 
         public long? judge { get; set; }
 
@@ -158,6 +174,8 @@ namespace JudgePlacement.JSON.Data
         public int? obligation { get; set; }
 
         public List<JSONRating> ratings { get; set; } = new();
+
+        public List<JSONStrike> strikes { get; set; } = new();
     }
 
     /// <summary>
@@ -172,6 +190,20 @@ namespace JudgePlacement.JSON.Data
         public string? percentile {  get; set; }
 
         public string? entry { get; set; }
+    }
+
+    /// <summary>
+    /// Class for a strike from JSON data.
+    /// </summary>
+    public class JSONStrike
+    {
+        public int? school { get; set; }
+
+        public int? @event { get; set; }
+
+        public int? entry { get; set; }
+
+        public string? tag { get; set; }
     }
 
     /// <summary>

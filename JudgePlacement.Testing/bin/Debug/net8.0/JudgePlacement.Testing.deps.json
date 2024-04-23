@@ -9,7 +9,8 @@
       "JudgePlacement.Testing/1.0.0": {
         "dependencies": {
           "JudgePlacement.JSON": "1.0.0",
-          "JudgePlacement.JSON.Data": "1.0.0"
+          "JudgePlacement.JSON.Data": "1.0.0",
+          "JudgePlacement.Placement": "1.0.0"
         },
         "runtime": {
           "JudgePlacement.Testing.dll": {}
@@ -33,6 +34,14 @@
         "runtime": {
           "JudgePlacement.JSON.Data.dll": {}
         }
+      },
+      "JudgePlacement.Placement/1.0.0": {
+        "dependencies": {
+          "JudgePlacement.Data": "1.0.0"
+        },
+        "runtime": {
+          "JudgePlacement.Placement.dll": {}
+        }
       }
     }
   },
@@ -53,6 +62,11 @@
       "sha512": ""
     },
     "JudgePlacement.JSON.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JudgePlacement.Placement/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
