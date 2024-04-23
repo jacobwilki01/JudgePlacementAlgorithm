@@ -12,11 +12,11 @@ namespace JudgePlacement.Placement
         #region Preference Weights and Maximums
         public static int BalancePreviousWeight { get; set; } = 5;
 
-        public static int PreferenceWeight { get; set; } = 18;
+        public static int PreferenceWeight { get; set; } = 40;
 
-        public static int MutualityWeight { get; set; } = 25;
+        public static int MutualityWeight { get; set; } = 20;
 
-        public static int PanelWeight { get; set; } = 18;
+        public static int PanelWeight { get; set; } = 40;
 
         public static int TotalWeight { get; set; } = 0;
 
@@ -37,18 +37,15 @@ namespace JudgePlacement.Placement
 
         public static int BreakingPoint { get; set; } = 2;
 
+        public static int NumberOfSwaps { get; set; } = 0;
+
         public static void PlaceJudges(Round round, JudgePool judgePool)
         {
             // Reset availability for each judge.
             foreach (Judge judge in judgePool.Judges)
                 judge.CurrentlyPlaced = false;
 
-            // temp code
-            Judge Chief = judgePool.Judges.Find(jdg => jdg.Name.Contains("Darren Elliott"))!;
-            Judge Wilkus = judgePool.Judges.Find(jdg => jdg.Name.Contains("Wilkus"))!;
-
-            judgePool.Judges.Remove(Chief);
-            judgePool.Judges.Remove(Wilkus);
+            NumberOfSwaps = 0;
 
             // Calculate the pref value for each judge/panel and round combination.
             CalculatePrefValues(round, judgePool);
@@ -70,17 +67,11 @@ namespace JudgePlacement.Placement
                     {
                         numTests++;
 
-                        if (numTests % 10_000 == 0)
-                            Console.WriteLine(numTests.ToString());
-
                         if (BacktrackingTwoWay(round))
                             break;
                     }
 
                     numTests++;
-
-                    if (numTests % 10_000 == 0)
-                        Console.WriteLine(numTests.ToString());
 
                     if (BacktrackingThreeWay(round))
                         break;
@@ -88,26 +79,27 @@ namespace JudgePlacement.Placement
 
                 numTests++;
 
-                if (numTests % 10_000 == 0)
-                    Console.WriteLine(numTests.ToString());
-
                 if (BacktrackingFixBreakRounds(round))
                     break;
             }
 
             // Re-Integrate Excluded Judges
-            foreach (Judge judge in judgePool.Judges)
+            for (int i = 0; i < 1_000; i++)
             {
-                if (judge.CurrentlyPlaced && !IsJudgeJudging(round, judge))
-                    judge.CurrentlyPlaced = false;
-            }
+                foreach (Judge judge in judgePool.Judges)
+                {
+                    if (judge.CurrentlyPlaced && !IsJudgeJudging(round, judge))
+                        judge.CurrentlyPlaced = false;
+                }
 
-            for (int i = 0; i < 1000; i++)
-            {
                 if (ReIncludeJudges(round, judgePool))
                     break;
             }
 
+            // Replace judges not preffed, if possible.
+            FixBadAssignments(round);
+
+            // Update judge data
             foreach (Judge judge in judgePool.Judges)
             {
                 if (judge.CurrentlyPlaced)
@@ -134,6 +126,9 @@ namespace JudgePlacement.Placement
                 {
                     foreach (Judge judge in judgePool.Judges)
                     {
+                        if (judge.Obligation - judge.RoundsJudged <= 0)
+                            continue;
+
                         float prefValue = CalculateJudgePrefValue(round, debate, judge);
 
                         while (debate.JudgeMutualities.TryGetValue(prefValue, out _))
@@ -343,7 +338,6 @@ namespace JudgePlacement.Placement
                         Judge? judge = debate.JudgeMutualities.First().Value;
                         float currentMutualPref = debate.JudgeMutualities.First().Key;
 
-
                         foreach (KeyValuePair<float, Judge> pair in debate.JudgeMutualities)
                         {
                             // Skip the first, so that the "pair" is always one ahead of "judge"
@@ -472,9 +466,11 @@ namespace JudgePlacement.Placement
 
                             if (flipEval < currentEval)
                             {
-                                // Swap assignments
+                                // Add new judge.
                                 debate1.Judges.Add(judge2);
                                 debate2.Judges.Add(judge1);
+
+                                // Remove old judges
                                 debate1.Judges.Remove(judge1);
                                 debate2.Judges.Remove(judge2);
 
@@ -482,6 +478,7 @@ namespace JudgePlacement.Placement
                                 judge1 = judge2;
 
                                 numChanges++;
+                                NumberOfSwaps++;
                             }
                         }
                     }
@@ -565,10 +562,12 @@ namespace JudgePlacement.Placement
 
                                     if (flipEval < currentEval)
                                     {
-                                        // Swap assignments
+                                        // Add assignments
                                         debate1.Judges.Add(judge3);
                                         debate2.Judges.Add(judge1);
                                         debate3.Judges.Add(judge2);
+
+                                        // Remove assignments
                                         debate1.Judges.Remove(judge1);
                                         debate2.Judges.Remove(judge2);
                                         debate3.Judges.Remove(judge3);
@@ -578,6 +577,7 @@ namespace JudgePlacement.Placement
                                         judge1 = judge3;
 
                                         numChanges++;
+                                        NumberOfSwaps++;
                                     }
                                 }
                             }
@@ -649,12 +649,17 @@ namespace JudgePlacement.Placement
                     {
                         Judge judge2 = bestDebate!.Judges[0];
 
+                        // Add assignments
                         bestDebate!.Judges.Add(judge1);
-                        bestDebate!.Judges.Remove(judge2);
                         debate1.Judges.Add(judge2);
+
+                        bestDebate!.Judges.Remove(judge2);
                         debate1.Judges.Remove(judge1);
 
                         judge1 = judge2;
+
+                        numChanges++;
+                        NumberOfSwaps++;
                     }
                 }
             }
@@ -705,12 +710,14 @@ namespace JudgePlacement.Placement
                     {
                         Judge curJudge = bestDebate!.Judges[0]; // TO-DO modify for panels
                         bestDebate!.Judges.Add(newJudge);
+
                         bestDebate!.Judges.Remove(curJudge);
 
                         curJudge.CurrentlyPlaced = false;
                         newJudge.CurrentlyPlaced = true;
 
                         numChanges++;
+                        NumberOfSwaps++;
                     }
                 }
             }
@@ -732,6 +739,105 @@ namespace JudgePlacement.Placement
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Runs through all of the debates, checking if a final assignment was either below the strike line or not preffed by one team.
+        /// </summary>
+        /// <param name="round">The debate at hand.</param>
+        private static void FixBadAssignments(Round round)
+        {
+            List<Debate> debatesToFix = new();
+
+            foreach (Debate debate in round.Debates)
+            {
+                foreach (Judge judge in debate.Judges)
+                {
+                    if (DebateNeedsFix(debate, judge, round.RoundNum))
+                    {
+                        debatesToFix.Add(debate);
+                        break;
+                    }
+                }
+            }
+
+            if (round.Type != RoundTypeEnum.Elim)
+            {
+                debatesToFix = debatesToFix.OrderBy(debate => debate.Bracket).Reverse().ToList();
+
+                foreach (Debate debate in debatesToFix)
+                {
+                    Judge newJudge = debate.JudgeMutualities.First().Value;
+                    List<Tuple<Judge, float, float>> cantFit = new();
+                    List<Judge> alreadyPlaced = new();
+
+                    foreach (KeyValuePair<float, Judge> pair in debate.JudgeMutualities)
+                    {
+                        // Skip the first, so that the "pair" is always one ahead of "judge".
+                        // Also skips if the new judge is the same as the old.
+                        if (pair.Equals(debate.JudgeMutualities.First()))
+                            continue;
+
+                        if (newJudge.CurrentlyPlaced || debate.Judges.Contains(pair.Value))
+                        {
+                            alreadyPlaced.Add(newJudge);
+                            newJudge = pair.Value;
+                            continue;
+                        }
+
+                        int maxPreference = (debate.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+                        int maxMutuality = (debate.Bracket >= round.RoundNum - BreakingPoint - 1) ? (debate.Bracket == round.RoundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+
+                        float affPref = 100f;
+                        float negPref = 100f;
+
+                        if (debate.Affirmative!.PreferenceSheet.TryGetValue(newJudge, out float affValue))
+                            affPref = affValue;
+                        if (debate.Negative!.PreferenceSheet.TryGetValue(newJudge, out float negValue))
+                            negPref = negValue;
+
+                        if (affPref <= maxPreference && negPref <= maxPreference && Math.Abs(affPref - negPref) <= maxMutuality && !IsJudgeStruck(round.Event!, debate, newJudge))
+                        {
+                            Judge curJudge = debate.Judges[0];
+                            debate.Judges.Add(newJudge);
+
+                            debate.Judges.Remove(curJudge);
+
+                            curJudge.CurrentlyPlaced = false;
+                            newJudge.CurrentlyPlaced = true;
+
+                            NumberOfSwaps++;
+                            break;
+                        }
+                        else
+                        {
+                            cantFit.Add(new Tuple<Judge, float, float>(newJudge, affPref, negPref));
+                            newJudge = pair.Value;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // TO-DO handle panels
+            }
+        }
+
+
+        private static bool DebateNeedsFix(Debate debate, Judge judge, int roundNum)
+        {
+            if (debate.Affirmative == null || debate.Negative == null)
+                return false;
+
+            int maxPreference = (debate.Bracket >= roundNum - BreakingPoint - 1) ? (debate.Bracket == roundNum - BreakingPoint - 1 ? MaxPreferenceBreakRound : MaxPreferenceIn) : MaxPreferenceOut;
+            int maxMutuality = (debate.Bracket >= roundNum - BreakingPoint - 1) ? (debate.Bracket == roundNum - BreakingPoint - 1 ? MaxMutualityDifferenceBreakRound : MaxMutualityDifferenceIn) : MaxMutualityDifferenceOut;
+
+            return debate.Affirmative.PreferenceSheet.ContainsKey(judge)
+                || debate.Negative.PreferenceSheet.ContainsKey(judge)
+                || debate.Affirmative.PreferenceSheet.TryGetValue(judge, out float affPref) && affPref >= maxPreference
+                || debate.Negative.PreferenceSheet.TryGetValue(judge, out float negPref) && negPref >= maxPreference
+                || Math.Abs(affPref - negPref) >= maxPreference;
+
         }
     }
 }

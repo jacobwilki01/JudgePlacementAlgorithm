@@ -28,6 +28,9 @@ namespace JudgePlacement.Data
         {
             foreach (Debate debate in Debates)
             {
+                if (debate.IsBye)
+                    continue;
+
                 foreach (Judge judge in debate.Judges)
                 {
                     judge.CurrentlyPlaced = false;
@@ -35,7 +38,10 @@ namespace JudgePlacement.Data
                     debate.Previous = debate.Judges[0]; // TO-DO remove
                 }
 
-                debate.Bracket--; // TO-DO remove
+                if (debate.Affirmative != null && debate.Affirmative.WinLossMap[RoundNum])
+                    debate.Affirmative.Wins--;
+                else if (debate.Negative != null && debate.Negative.WinLossMap[RoundNum])
+                    debate.Negative.Wins--;
 
                 debate.CurrentMutualPref = 0f;
                 debate.Judges.Clear();

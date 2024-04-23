@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JudgePlacement.JSON.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ccf418a731f67ff0515b20f7b62f21d62714f87")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25a865382375f640d2169247c3319006a1397c3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("JudgePlacement.JSON.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JudgePlacement.JSON.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

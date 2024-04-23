@@ -22,6 +22,8 @@ namespace JudgePlacement.Data
 
         public Dictionary<Judge, float> PreferenceSheet { get; set; } = new();
 
+        public Dictionary<int, bool> WinLossMap { get; set; } = new();
+
         public List<Judge> PreviousJudges { get; set; } = new();
 
         public Guid Guid = Guid.NewGuid();

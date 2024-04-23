@@ -127,6 +127,10 @@ namespace JudgePlacement.JSON.Data
 
         public int? side { get; set; }
 
+        public int? bye { get; set; }
+
+        public int? forfeit { get; set; }
+
         public long? judge { get; set; }
 
         public List<JSONScore> scores {  get; set; } = new();

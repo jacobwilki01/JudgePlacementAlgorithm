@@ -1,2 +1,2 @@
 # JudgePlacementAlgorithm
-A program to use Gary Larson's STA Judge Placement Algorithm in modern applications.
+A program to implement Gary Larson's Judge Placement algorithm on Tabroom exported data.

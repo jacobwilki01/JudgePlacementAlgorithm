@@ -160,6 +160,8 @@ namespace JudgePlacement.JSON
                             School = tournament.SchoolMap[int.Parse(jsonJudge.school ?? "0")]
                         };
 
+                        judge.SchoolStrikes.Add(judge.School);
+
                         foreach (JSONRating jsonRating in jsonJudge.ratings)
                         {
                             int entryId = int.Parse(jsonRating.entry!);
@@ -263,6 +265,8 @@ namespace JudgePlacement.JSON
                         Number = int.Parse(jsonSection.letter!)
                     };
 
+                    int numBallots = 0;
+
                     foreach (JSONBallot jsonBallot in jsonSection.ballots)
                     {
                         bool isAff = jsonBallot.side! == 1;
@@ -274,13 +278,32 @@ namespace JudgePlacement.JSON
                             else
                                 debate.Negative = entry;
 
+                            if (!debate.EntryBallotMap.ContainsKey(entry))
+                                debate.EntryBallotMap.Add(entry, 0);
+
                             foreach (JSONScore jsonScore in jsonBallot.scores)
                             {
                                 if (!jsonScore.tag!.Equals("winloss"))
                                     continue;
 
+                                numBallots++;
+
                                 if (jsonScore.value! == 1)
+                                    debate.EntryBallotMap[entry] = 1;
+                            }
+
+                            // Means a bye/forfeit combination occured.
+                            if (jsonBallot.scores.Count == 0)
+                            {
+                                if (jsonBallot.bye != null)
+                                {
                                     entry.Wins++;
+                                    entry.WinLossMap.Add(debateRound.RoundNum, true);
+                                }
+                                else
+                                {
+                                    entry.WinLossMap.Add(debateRound.RoundNum, false);
+                                }
                             }
                         }
 
@@ -297,8 +320,26 @@ namespace JudgePlacement.JSON
                         }
                     }
 
+                    // De-duplicates the number of ballots.
+                    numBallots /= 2;
+
                     if (debate.Affirmative != null && debate.Negative != null)
-                        debate.Bracket = Math.Max(debate.Affirmative!.Wins, debate.Negative!.Wins);
+                    {
+                        debate.Bracket = Math.Max(debate.Affirmative.Wins, debate.Negative.Wins);
+
+                        if (numBallots > 0 && debate.EntryBallotMap[debate.Affirmative] / numBallots > 0.5)
+                        {
+                            debate.Affirmative.Wins++;
+                            debate.Affirmative.WinLossMap.Add(debateRound.RoundNum, true);
+                            debate.Negative.WinLossMap.Add(debateRound.RoundNum, false);
+                        }
+                        else if (numBallots > 0)
+                        {
+                            debate.Negative.Wins++;
+                            debate.Negative.WinLossMap.Add(debateRound.RoundNum, true);
+                            debate.Affirmative.WinLossMap.Add(debateRound.RoundNum, false);
+                        }
+                    }
 
                     debateRound.Debates.Add(debate);
                     debateRound.Event = @event;

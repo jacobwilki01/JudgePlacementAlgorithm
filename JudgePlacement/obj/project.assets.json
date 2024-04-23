@@ -69,11 +69,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
+      "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
       "projectName": "JudgePlacement",
-      "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
+      "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
       "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\obj\\",
+      "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -88,20 +88,21 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
-              "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
+            "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj": {
+              "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Data\\JudgePlacement.Data.csproj"
             },
-            "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
-              "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
+            "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj": {
+              "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj"
             },
-            "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
-              "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj"
+            "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj": {
+              "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON\\JudgePlacement.JSON.csproj"
             }
           }
         }

@@ -18,6 +18,8 @@ namespace JudgePlacement.Data
 
         public SortedDictionary<float, List<Judge>> PanelMutualities { get; set; } = new();
 
+        public Dictionary<Entry, int> EntryBallotMap { get; set; } = new();
+
         public bool IsBye { get; set; } = false;
 
         public int Bracket { get; set; } = 0;
@@ -63,7 +65,7 @@ namespace JudgePlacement.Data
 
         public float GetPrefMaximum()
         {
-            if (IsBye) 
+            if (IsBye)
                 return 0f;
 
             if (Judges.Count == 1)
@@ -83,8 +85,8 @@ namespace JudgePlacement.Data
                     return Negative!.PreferenceSheet[Judges[0]];
                 }
                 else
-                { 
-                    return 0f; 
+                {
+                    return 0f;
                 }
             }
             else
@@ -115,7 +117,7 @@ namespace JudgePlacement.Data
             if (Affirmative!.PreferenceSheet.TryGetValue(judge, out float affPref) && Negative!.PreferenceSheet.TryGetValue(judge, out float negPref))
                 return Math.Abs(affPref - negPref);
 
-            return 1000f;
+            return 100000f;
         }
 
         /// <summary>
@@ -131,7 +133,7 @@ namespace JudgePlacement.Data
             if (Affirmative!.PreferenceSheet.TryGetValue(judge, out float affPref) && Negative!.PreferenceSheet.TryGetValue(judge, out float negPref))
                 return Math.Max(affPref, negPref);
 
-            return 1000f;
+            return 100000f;
         }
 
         public string GetConsoleLine()
@@ -154,11 +156,52 @@ namespace JudgePlacement.Data
             if (Negative!.PreferenceSheet.TryGetValue(Previous!, out _))
                 negPrev = Negative!.PreferenceSheet[Previous!];
 
-            string curPref = "(" + Math.Round(affCur, 2).ToString() + "-" + Math.Round(negCur, 2).ToString() + ")";
-            string prevPref = "(" + Math.Round(affPrev, 2).ToString() + "-" + Math.Round(negPrev, 2).ToString() + ")";
+            string curPref = " (" + Math.Round(affCur, 2).ToString() + "-" + Math.Round(negCur, 2).ToString() + ") (" + Math.Abs(affCur - negCur).ToString() + ")" + " (" + Judges[0].Obligation.ToString() + "-" + Judges[0].RoundsJudged.ToString() + ")";
+            string prevPref = " (" + Math.Round(affPrev, 2).ToString() + "-" + Math.Round(negPrev, 2).ToString() + ") (" + Math.Abs(affPrev - negPrev).ToString() + ")" + " (" + Previous!.Obligation.ToString() + "-" + Previous!.RoundsJudged.ToString() + ")";
 
             // Affirmative!.Code + "\tvs. " + Negative!.Code + "\t| " + 
             return Bracket.ToString() + " |" + judgeNames + curPref + " | " + Previous!.Name + prevPref;
+        }
+
+        public string GetJudgeSwap()
+        {
+            float affCur = 0f;
+            float negCur = 0f;
+            float affPrev = 0f;
+            float negPrev = 0f;
+
+            if (Affirmative!.PreferenceSheet.TryGetValue(Judges[0], out _))
+                affCur = Affirmative!.PreferenceSheet[Judges[0]];
+            if (Negative!.PreferenceSheet.TryGetValue(Judges[0], out _))
+                negCur = Negative!.PreferenceSheet[Judges[0]];
+            if (Affirmative!.PreferenceSheet.TryGetValue(Judges[1], out _))
+                affPrev = Affirmative!.PreferenceSheet[Judges[1]];
+            if (Negative!.PreferenceSheet.TryGetValue(Judges[1], out _))
+                negPrev = Negative!.PreferenceSheet[Judges[1]];
+
+            string curPref = Judges[0].Name + " (" + Math.Round(affCur, 2).ToString() + "-" + Math.Round(negCur, 2).ToString() + ") (" + Math.Abs(affCur - negCur).ToString() + ")";
+            string prevPref = Judges[1].Name + " (" + Math.Round(affPrev, 2).ToString() + "-" + Math.Round(negPrev, 2).ToString() + ") (" + Math.Abs(affPrev - negPrev).ToString() + ")";
+
+            return curPref + " | " + prevPref;
+        }
+
+        public Tuple<float, float, float, float> GetPrefData()
+        {
+            float affCur = 0f;
+            float negCur = 0f;
+            float affPrev = 0f;
+            float negPrev = 0f;
+
+            if (Affirmative!.PreferenceSheet.TryGetValue(Judges[0], out _))
+                affCur = Affirmative!.PreferenceSheet[Judges[0]];
+            if (Negative!.PreferenceSheet.TryGetValue(Judges[0], out _))
+                negCur = Negative!.PreferenceSheet[Judges[0]];
+            if (Affirmative!.PreferenceSheet.TryGetValue(Previous!, out _))
+                affPrev = Affirmative!.PreferenceSheet[Previous!];
+            if (Negative!.PreferenceSheet.TryGetValue(Previous!, out _))
+                negPrev = Negative!.PreferenceSheet[Previous!];
+
+            return new Tuple<float, float, float, float>(affCur, negCur, affPrev, negPrev);
         }
     }
 }
