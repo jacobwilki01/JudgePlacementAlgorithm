@@ -15,3 +15,7 @@ JudgePlacement.Placement/obj/Debug/net8.0/JudgePlacement.Placement.csproj.Assemb
 JudgePlacement.Testing/obj/Debug/net8.0/JudgePlacement.Testing.AssemblyInfo.cs
 JudgePlacement.Testing/obj/Debug/net8.0/JudgePlacement.Testing.AssemblyInfoInputs.cache
 JudgePlacement/obj/Debug/net8.0-windows/JudgePlacement.AssemblyInfo.cs
+*.cache
+*.dll
+*.pdb
+*.exe
