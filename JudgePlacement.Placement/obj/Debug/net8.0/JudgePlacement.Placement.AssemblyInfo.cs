@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JudgePlacement.Placement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8bd9bbcd6b2e4bf333fd3400ce3da1bf77fe210")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34b30da4b3139ade05eb3ebbb3982c06e68dfa58")]
 [assembly: System.Reflection.AssemblyProductAttribute("JudgePlacement.Placement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JudgePlacement.Placement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
