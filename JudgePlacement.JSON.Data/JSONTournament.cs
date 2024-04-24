@@ -17,6 +17,8 @@ namespace JudgePlacement.JSON.Data
     {
         public string? name { get; set; }
 
+        public string? start { get; set; }
+
         public List<JSONSchool> schools { get; set; } = new();
 
         public List<JSONCategory> categories { get; set; } = new();

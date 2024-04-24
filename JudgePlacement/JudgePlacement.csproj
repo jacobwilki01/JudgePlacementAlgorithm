@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JudgePlacement.Data\JudgePlacement.Data.csproj" />
     <ProjectReference Include="..\JudgePlacement.JSON.Data\JudgePlacement.JSON.Data.csproj" />
     <ProjectReference Include="..\JudgePlacement.JSON\JudgePlacement.JSON.csproj" />

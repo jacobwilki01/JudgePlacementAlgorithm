@@ -10,6 +10,8 @@ namespace JudgePlacement.Data
     {
         public string Name { get; set; } = string.Empty;
 
+        public string Year { get; set; } = string.Empty;
+
         public List<School> Schools { get; set; } = new();
 
         public List<JudgeCategory> JudgeCategories { get; set; } = new();

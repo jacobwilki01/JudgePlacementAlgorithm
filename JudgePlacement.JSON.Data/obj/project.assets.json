@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
+      "projectUniqueName": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
       "projectName": "JudgePlacement.JSON.Data",
-      "projectPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
+      "projectPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\JudgePlacement.JSON.Data.csproj",
       "packagesPath": "C:\\Users\\jwilk\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\obj\\",
+      "outputPath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.JSON.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

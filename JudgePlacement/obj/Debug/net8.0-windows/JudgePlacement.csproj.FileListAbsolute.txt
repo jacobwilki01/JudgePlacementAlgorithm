@@ -76,3 +76,9 @@ C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\refint
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\JudgePlacement.pdb
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\JudgePlacement.genruntimeconfig.cache
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\ref\JudgePlacement.dll
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\ApplicationControlView.g.cs
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\TournamentControlView.g.cs
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\ApplicationControlView.baml
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\TournamentControlView.baml
+D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\bin\Debug\net8.0-windows\MvvmHelpers.dll

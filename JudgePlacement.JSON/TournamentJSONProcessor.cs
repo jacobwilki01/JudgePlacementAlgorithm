@@ -12,25 +12,16 @@ namespace JudgePlacement.JSON
 {
     public static class TournamentJSONProcessor
     {
-        public static TabroomHTTPClient TabroomHTTPClient { get; set; } = new();
-
-        public static string DownloadTournamentData(string tournId)
-        {
-            if (!TabroomHTTPClient.HasLoggedIn)
-            {
-                // handle some exception code. TO-DO later
-            }
-
-            return TabroomHTTPClient.TournamentDataToString(tournId);
-        }
-
         public static Tournament CreateNewTournament(string jsonString)
         {
+            // Need to add check for ADMIN data.
+
             JSONTournament jsonTourn = JsonSerializer.Deserialize<JSONTournament>(jsonString)!;
 
             Tournament tournament = new Tournament()
             {
-                Name = jsonTourn.name!
+                Name = jsonTourn.name!,
+                Year = jsonTourn.start!.Substring(0, 4)
             };
 
             // Creates the "events", "judge categories", and "timeslots".

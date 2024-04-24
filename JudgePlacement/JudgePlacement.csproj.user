@@ -7,7 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\ApplicationControlView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TournamentControlView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ApplicationControlView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TournamentControlView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

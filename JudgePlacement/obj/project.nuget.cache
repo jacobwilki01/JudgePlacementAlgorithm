@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WmYuHNKxqjYbibgToJXCWXI3f9UyGRHSTQU1moFypXR+EvO+Tb+UWmhc/UiKCp4LppQFVx1wCJQ3RO2M7plnKA==",
+  "dgSpecHash": "MVCBzhY9RbtUVLDT4jR1FNLGqzRaVeQ8dY2EfRahcUd8NVcwssrLP9FLQbXSDje818NsrkgxGC5la4h5oPhzRg==",
   "success": true,
-  "projectFilePath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement\\JudgePlacement.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jwilk\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
+    "C:\\Users\\jwilk\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
