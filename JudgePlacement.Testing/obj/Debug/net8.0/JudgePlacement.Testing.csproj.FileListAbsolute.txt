@@ -49,3 +49,4 @@ C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\JudgeP
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\JudgePlacement.Testing.genruntimeconfig.cache
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\obj\Debug\net8.0\ref\JudgePlacement.Testing.dll
 D:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Testing\bin\Debug\net8.0\Newtonsoft.Json.dll

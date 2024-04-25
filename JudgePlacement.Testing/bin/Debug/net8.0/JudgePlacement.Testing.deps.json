@@ -26,6 +26,9 @@
         }
       },
       "JudgePlacement.Data/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
         "runtime": {
           "JudgePlacement.Data.dll": {}
         }
@@ -33,20 +36,25 @@
       "JudgePlacement.JSON/1.0.0": {
         "dependencies": {
           "JudgePlacement.Data": "1.0.0",
-          "JudgePlacement.JSON.Data": "1.0.0"
+          "JudgePlacement.JSON.Data": "1.0.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "JudgePlacement.JSON.dll": {}
         }
       },
       "JudgePlacement.JSON.Data/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
         "runtime": {
           "JudgePlacement.JSON.Data.dll": {}
         }
       },
       "JudgePlacement.Placement/1.0.0": {
         "dependencies": {
-          "JudgePlacement.Data": "1.0.0"
+          "JudgePlacement.Data": "1.0.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "JudgePlacement.Placement.dll": {}

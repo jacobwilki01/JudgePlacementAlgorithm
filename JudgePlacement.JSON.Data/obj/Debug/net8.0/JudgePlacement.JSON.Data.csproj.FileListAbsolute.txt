@@ -33,3 +33,4 @@ C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.JSON.Data\obj\Debug\net8.0\Judg
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.JSON.Data\obj\Debug\net8.0\refint\JudgePlacement.JSON.Data.dll
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.JSON.Data\obj\Debug\net8.0\JudgePlacement.JSON.Data.pdb
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.JSON.Data\obj\Debug\net8.0\ref\JudgePlacement.JSON.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.JSON.Data\obj\Debug\net8.0\JudgePlacement.JSON.Data.csproj.AssemblyReference.cache

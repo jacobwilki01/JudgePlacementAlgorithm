@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1k5ltgA4KdMmYeRPEZENs9cZqrIkyMTThBfORL7wkKVzFKSuiObI93RnJVUhH+lMn3VkHbNVu/7HsmVJ+e9IdQ==",
+  "dgSpecHash": "26Bko0M8nAFLmfIcScqISVJXXvJ/QFHC+k/DsCQ6/mEUVX/lAle/FEfm6cMRmrqT7ylUX39/9SOasmk3CZJo0g==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\GitHub\\JudgePlacementAlgorithm\\JudgePlacement.Placement\\JudgePlacement.Placement.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jwilk\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

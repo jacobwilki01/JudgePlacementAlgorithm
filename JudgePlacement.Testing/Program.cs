@@ -3,34 +3,16 @@ using JudgePlacement.JSON;
 using JudgePlacement.JSON.Data;
 using JudgePlacement.Placement;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-string filepath = "C:\\Users\\jwilk\\Downloads\\Complete-Test Tournament-2024-04-24-at-16-20-02.json";
+string filepath = "C:\\Users\\jwilk\\Downloads\\Complete-Test Tournament-2024-04-24-at-18-40-30.json";
 string jsonString = File.ReadAllText(filepath);
 
-Tournament tournament = TournamentJSONProcessor.CreateNewTournament(jsonString);
-dynamic jsonObj = JsonConvert.DeserializeObject(jsonString)!;
+Tournament tournament = JSONTournamentImporter.CreateNewTournament(jsonString);
 
-foreach (var category in jsonObj.categories)
-{
-    string hi = "hi";
-
-    foreach (var @event in category.events)
-    {
-        foreach (var round in @event.rounds)
-        {
-            foreach (var section in round.sections)
-            {
-                foreach (var ballot in section.ballots)
-                {
-                    string hi1 = "hi";
-
-                }
-            }
-        }
-    }
-}
+while (true) { }
 
 Round TOCRound = tournament.Events[1].Rounds[5];
 JudgePool JudgePoolRound6 = tournament.JudgeCategories[0].JudgePools[1];

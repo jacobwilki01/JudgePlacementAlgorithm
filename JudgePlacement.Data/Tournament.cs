@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace JudgePlacement.Data
         public List<Event> Events { get; set; } = new();
 
         public List<Timeslot> Timeslots { get; set; } = new();
+
+        public dynamic? RawJsonTournament { get; set; }
 
         #region Maps for Tabroom IDs to C# Objects
 

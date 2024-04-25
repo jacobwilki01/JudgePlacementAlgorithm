@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\
 JudgePlacement
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\GitHub\JudgePlacementAlgorithm\JudgePlacement\App.xaml
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\App.xaml
 3-2119468892
 
 132121131054
-202-1795098357
+2031274538792
 MainWindow.xaml;View\ApplicationControlView.xaml;View\TournamentControlView.xaml;
 
-True
+False
 

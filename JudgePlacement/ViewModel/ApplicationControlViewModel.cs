@@ -99,7 +99,7 @@ namespace JudgePlacement.ViewModel
                 return;
             }
 
-            Tournament newTourn = TournamentJSONProcessor.CreateNewTournament(jsonString);
+            Tournament newTourn = JSONTournamentImporter.CreateNewTournament(jsonString);
 
             foreach (KeyValuePair<Tournament, string> pair in _loadedTournaments)
             {

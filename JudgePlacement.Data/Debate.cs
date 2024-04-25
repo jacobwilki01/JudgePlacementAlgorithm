@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace JudgePlacement.Data
         public Entry? Negative { get; set; }
 
         public List<Judge> Judges { get; set; } = new();
+
+        public List<JObject>? RawJsonBallots { get; set; }
 
         public SortedDictionary<float, Judge> JudgeMutualities { get; set; } = new();
 

@@ -95,6 +95,8 @@ namespace JudgePlacement.JSON.Data
 
         public string? type { get; set; }
 
+        public string? id { get; set; }
+
         public List<JSONRoundSetting> settings { get; set; } = new();
 
         public List<JSONSection> sections { get; set; } = new();
@@ -115,7 +117,9 @@ namespace JudgePlacement.JSON.Data
     /// </summary>
     public class JSONSection
     {
-        public string? letter {  get; set; }
+        public string? letter { get; set; }
+
+        public string? id { get; set; }
 
         public List<JSONBallot> ballots { get; set; } = new();
     }

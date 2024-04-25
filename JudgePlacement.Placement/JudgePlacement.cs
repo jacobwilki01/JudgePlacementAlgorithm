@@ -1,4 +1,5 @@
 ﻿using JudgePlacement.Data;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +105,20 @@ namespace JudgePlacement.Placement
             {
                 if (judge.CurrentlyPlaced)
                     judge.RoundsJudged++;
+            }
+
+            // Update Export JSON data
+            foreach (Debate debate in round.Debates)
+            {
+                if (round.Type != RoundTypeEnum.Elim)
+                {
+                    Judge judge = debate.Judges[0];
+
+                    foreach (JObject jBallot in debate.RawJsonBallots!)
+                    {
+                        jBallot.Add("judge", judge.TabroomId);
+                    }
+                }
             }
         }
 

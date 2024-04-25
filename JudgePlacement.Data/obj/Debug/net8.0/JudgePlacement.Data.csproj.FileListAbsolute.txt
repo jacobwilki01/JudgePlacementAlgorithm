@@ -22,3 +22,4 @@ C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlac
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\refint\JudgePlacement.Data.dll
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.pdb
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\ref\JudgePlacement.Data.dll
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement.Data\obj\Debug\net8.0\JudgePlacement.Data.csproj.AssemblyReference.cache
