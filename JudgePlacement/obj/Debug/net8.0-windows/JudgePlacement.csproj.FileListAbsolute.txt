@@ -88,3 +88,4 @@ C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\T
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\ApplicationControlView.baml
 C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\obj\Debug\net8.0-windows\View\TournamentControlView.baml
+C:\GitHub\JudgePlacementAlgorithm\JudgePlacement\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
